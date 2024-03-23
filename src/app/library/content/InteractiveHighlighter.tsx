@@ -1,7 +1,8 @@
 'use client'
 import Badge from '@mui/material/Badge';
 import React, { Component, MouseEvent, useLayoutEffect } from 'react';
-
+import ClearIcon from '@mui/icons-material/Clear';
+import IconButton from '@mui/material/IconButton';
 
 export type SelectionMarker = { selectionStart: number, selectionLength: number };
 type Segment = { start: number, end: number, highlights: number[] };
@@ -89,7 +90,7 @@ export class InteractiveHighlighter extends Component<InteractiveHighlighterProp
         if (this.props.onHighlightedClickEvent) {
             this.onHighlightedClickEvent = this.props.onHighlightedClickEvent
         } else {
-            this.onHighlightedClickEvent = function(highlights: string[]) {
+            this.onHighlightedClickEvent = function (highlights: string[]) {
                 // do nothing
             }
         }
@@ -97,8 +98,8 @@ export class InteractiveHighlighter extends Component<InteractiveHighlighterProp
 
     }
 
-    private _getSelectionFromDOM(selectionObj: Selection ): SelectionMarker | null {
-     
+    private _getSelectionFromDOM(selectionObj: Selection): SelectionMarker | null {
+
         // const selectionObj = window.getSelection();
         if (!selectionObj) {
             console.error("getSelection() returned null");
@@ -273,32 +274,32 @@ export class InteractiveHighlighter extends Component<InteractiveHighlighterProp
     }
 
     onTouchEndHandler(e: React.TouchEvent): void {
-      
+
         const selectionObj = document.getSelection()
         // const selectionObj = this._selectionCandidate
         console.log(selectionObj)
-        
-        if(selectionObj && selectionObj.toString().length > 0) {
+
+        if (selectionObj && selectionObj.toString().length > 0) {
             e.preventDefault()
             e.stopPropagation()
             this._lastSelectionTimestamp = e.timeStamp
             this.onSelectHandler(selectionObj)
-            
-        }        
+
+        }
     }
 
     onMouseUpHandler(e: MouseEvent): void {
-     
+
         const selectionObj = document.getSelection()
         // const selectionObj = this._selectionCandidate
         console.log(selectionObj)
-    
-        if(selectionObj && selectionObj.toString().length > 0) {
+
+        if (selectionObj && selectionObj.toString().length > 0) {
             e.preventDefault()
             e.stopPropagation()
             this._lastSelectionTimestamp = e.timeStamp
-            this.onSelectHandler(selectionObj)                    
-        }        
+            this.onSelectHandler(selectionObj)
+        }
     }
 
 
@@ -325,17 +326,19 @@ export class InteractiveHighlighter extends Component<InteractiveHighlighterProp
             if (this._segments[segmentNum].highlights.length > 0) {
                 // highlighted
                 markedUp.push(<Badge
-                     key={"d" + segmentNum}
-                      color="secondary" 
-                      onClick={e => this.onClickEvent(e, this._segments[segmentNum])} 
-                      badgeContent={this._segments[segmentNum].highlights.length} 
-                      invisible={this._segments[segmentNum].highlights.length < 2  }
-                      ><span
+                    key={"d" + segmentNum}
+                    color="secondary"
+                    onClick={e => this.onClickEvent(e, this._segments[segmentNum])}
+                    badgeContent={this._segments[segmentNum].highlights.length}
+                    invisible={this._segments[segmentNum].highlights.length < 2}
+                ><span
 
                     data-segment={segmentNum}
                     className={this._customClassFn(this._segments[segmentNum].highlights)}>
-                    {textContent.substring(spanStart, spanStart + spanLen)}
-                </span></Badge>);
+                        {textContent.substring(spanStart, spanStart + spanLen)}
+                    </span>
+                   
+                </Badge>);
             } else {
                 // non-highlighted
                 markedUp.push(<span
@@ -343,6 +346,7 @@ export class InteractiveHighlighter extends Component<InteractiveHighlighterProp
                     data-segment={segmentNum}
                     className={this._customClassFn(this._segments[segmentNum].highlights)}>
                     {textContent.substring(spanStart, spanStart + spanLen)}
+    
                 </span>);
             }
         }

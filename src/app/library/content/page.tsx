@@ -37,7 +37,8 @@ import SendIcon from '@mui/icons-material/Send';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import ChatIcon from '@mui/icons-material/Chat';
-
+import ClearIcon from '@mui/icons-material/Clear';
+import Stack from '@mui/material/Stack';
 
 export default function LibraryContent() {
 
@@ -46,7 +47,7 @@ export default function LibraryContent() {
 
 
 
-  const [selectedHighlights, setSelectedHighlights] = useState<string[]>( [])
+  const [selectedHighlights, setSelectedHighlights] = useState<string[]>([])
   const [selectedText, setSelectedText] = useState<string | null>(null)
   const [highlights, setHighlights] = useState([
     { startIndex: 63, numChars: 12 },
@@ -74,13 +75,13 @@ export default function LibraryContent() {
 
   function onHighlightedClickEvent(highlights: string[]) {
     if (highlights && highlights.length > 0) {
-      if (highlights.length == 1 ){
+      if (highlights.length == 1) {
         onHighlightedTextClickEvent(highlights[0])
-      }else {
+      } else {
         console.log(highlights)
         setSelectedHighlights(highlights)
       }
-     
+
     }
   }
 
@@ -108,7 +109,35 @@ export default function LibraryContent() {
           maxHeight: '50vh'
         }}
       >
-        <DialogTitle id="scroll-dialog-title">AI Chat</DialogTitle>
+    
+
+        {/* <IconButton style={{
+          position: 'absolute',
+          right: '0px',
+          padding: '3px'
+        }} aria-label="Delete">
+          <ClearIcon />
+        </IconButton> */}
+
+        {/* <Stack direction="row"> */}
+        <Chip 
+          style={{
+            position: 'absolute',
+            right: '0px',
+            margin: '10px'
+            // padding: '3px'
+          }} 
+        onClick={onCloseDrawer} icon={<ClearIcon />} label="Delete" variant="outlined" /> 
+        
+
+        <DialogTitle id="scroll-dialog-title">AI Chat
+        
+
+        </DialogTitle>
+
+        
+        {/* </Stack> */}
+        
         <DialogContent>
           <DialogContentText
             id="scroll-dialog-description"
@@ -124,27 +153,26 @@ export default function LibraryContent() {
           {/* <Chip onClick={onCloseDrawer} icon={<ChatIcon />} label="Chat with AI" variant="outlined" />
           */}
         </DialogActions>
-        <Divider/>
+        <Divider />
         <Paper
-            component="form"
-            sx={{ p: '5px 5px', display: 'flex', alignItems: 'center' }}
-          >
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder={"Chat more with AI"}
-              inputProps={{ 'aria-label': 'Chat more with AI' }}
-            />
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-              <SendIcon />
-            </IconButton>
-            
-            
-          </Paper>
+          component="form"
+          sx={{ p: '5px 5px', display: 'flex', alignItems: 'center' }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder={"Chat more with AI"}
+            inputProps={{ 'aria-label': 'Chat more with AI' }}
+          />
+          <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+            <SendIcon />
+          </IconButton>
+
+
+        </Paper>
       </Dialog>
 
 
       <Typography variant="body2" style={{
-
         'maxWidth': '80vw',
       }}>
 
@@ -175,7 +203,7 @@ export default function LibraryContent() {
               <ListItemButton onClick={e => onHighlightedTextClickEvent(text)}>
 
                 <ListItemIcon>
-                  <ListItemText primary={index+1} />
+                  <ListItemText primary={index + 1} />
 
                 </ListItemIcon>
                 <ListItemText primary={text} >
