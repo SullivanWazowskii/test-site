@@ -183,10 +183,13 @@ export default function LibraryContent() {
         anchor={'bottom'}
         open={selectedHighlights && selectedHighlights.length > 0}
         onClose={onCloseDrawer}
-
+ 
       >
         <List style={{
-          maxHeight: '50vh'
+          maxHeight: '50vh',
+          width: '50vw',
+          minWidth: '600px',
+          alignSelf: 'center'
         }} >
 
 
@@ -194,18 +197,11 @@ export default function LibraryContent() {
 
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={e => onHighlightedTextClickEvent(text)}>
-
-                <ListItemIcon>
-                  <ListItemText primary={index + 1} />
-
-                </ListItemIcon>
-                <ListItemText primary={text} >
-
-                </ListItemText>
-
+                <ListItemIcon><ListItemText primary={index + 1}/></ListItemIcon>
+                <ListItemText primary={text} />
               </ListItemButton>
-
             </ListItem>
+
           ))}
         </List>
 
