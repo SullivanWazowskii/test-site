@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import type { Viewport } from 'next'
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from './header';
+import Footer from "./footer";
+import Stack from '@mui/material/Stack';
+import { Box } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +27,25 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      {/* <body className={inter.className}>{children}</body> */}
-      <body className="main">{children}</body> 
+
+      <body style={{
+        padding: 0,
+        margin: 0,
+      }} >
+
+        <Header />
+
+        <Box sx={{
+          marginTop: '30px',
+          marginBottom: '100px'
+        }}>
+          {children}
+        </Box>
+
+        <Footer />
+
+      </body>
+
     </html>
   );
 }

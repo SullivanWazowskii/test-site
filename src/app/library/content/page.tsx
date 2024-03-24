@@ -110,24 +110,14 @@ export default function LibraryContent() {
         }}
       >
     
-
-        {/* <IconButton style={{
-          position: 'absolute',
-          right: '0px',
-          padding: '3px'
-        }} aria-label="Delete">
-          <ClearIcon />
-        </IconButton> */}
-
-        {/* <Stack direction="row"> */}
         <Chip 
           style={{
             position: 'absolute',
             right: '0px',
             margin: '10px'
-            // padding: '3px'
           }} 
-        onClick={onCloseDrawer} icon={<ClearIcon />} label="Delete" variant="outlined" /> 
+        onClick={onCloseDrawer} icon={<ClearIcon />} label="Delete" variant="outlined"
+         /> 
         
 
         <DialogTitle id="scroll-dialog-title">AI Chat
@@ -172,9 +162,12 @@ export default function LibraryContent() {
       </Dialog>
 
 
-      <Typography variant="body2" style={{
-        'maxWidth': '80vw',
-      }}>
+      <Typography variant="body2"
+       style={{
+        'width': '80vw',
+        'maxWidth': '720px'
+      }}
+      >
 
         <InteractiveHighlighter
           text={init_text}
