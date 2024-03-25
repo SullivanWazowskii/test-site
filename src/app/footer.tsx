@@ -1,23 +1,36 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+"use client"
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import { Container } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { Container } from '@mui/material';
+import { redirect } from 'next/navigation';
+import * as React from 'react';
+import { useRouter } from 'next/navigation'
 
 const Footer: React.FC = () => {
+  const [value, setValue] = React.useState("");
+  const router = useRouter()
+
   return (
     <Container style={{
       position: 'fixed',
       bottom: '0px',
       zIndex: 100
     }}>
-      <BottomNavigation showLabels>
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigation showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          console.log(newValue)
+          setValue(newValue);
+          
+          router.push(`/${newValue}/`)
+          
+        }}
+      >
+        <BottomNavigationAction label="Library" value={"library"} icon={<LibraryBooksIcon />} />
+        <BottomNavigationAction label="Dictionary" value={"dictionary"} icon={<CollectionsBookmarkIcon />} />
+        {/* <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} /> */}
       </BottomNavigation>
     </Container>
   )

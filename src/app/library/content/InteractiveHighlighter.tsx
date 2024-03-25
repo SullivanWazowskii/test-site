@@ -1,8 +1,6 @@
 'use client'
 import Badge from '@mui/material/Badge';
-import React, { Component, MouseEvent, useLayoutEffect } from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
-import IconButton from '@mui/material/IconButton';
+import React, { Component, MouseEvent } from 'react';
 
 export type SelectionMarker = { selectionStart: number, selectionLength: number };
 type Segment = { start: number, end: number, highlights: number[] };
